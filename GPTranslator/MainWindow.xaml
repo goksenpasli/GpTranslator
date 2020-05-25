@@ -8,8 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:tb="http://www.hardcodet.net/taskbar"
     Title="MainWindow"
+    Visibility="Hidden"
     Width="800" Height="450"
-    Icon="favicon.ico" ShowInTaskbar="False" Visibility="Hidden"
+    Icon="favicon.ico" ShowInTaskbar="False"
     mc:Ignorable="d">
     <Window.Resources>
         <Diller:ArrayList x:Key="Diller">
@@ -75,17 +76,20 @@
         </Diller:ArrayList>
 
     </Window.Resources>
-    <tb:TaskbarIcon IconSource="favicon.ico" Visibility="Visible">
+    <tb:TaskbarIcon Visibility="Visible" IconSource="favicon.ico">
         <tb:TaskbarIcon.ContextMenu>
             <ContextMenu>
-                <MenuItem Header="Hakkında" Click="HakkındaItem_Click" />
-                <MenuItem Header="Çıkış" Click="MenuItem_Click" />
+                <MenuItem Header="Hakkında." Click="HakkındaItem_Click" />
+                <MenuItem Header="Başlangıçta Çalıştır." IsCheckable="True" Checked="MenuItem_Checked" Unchecked="MenuItem_Unchecked" />
+                <MenuItem Header="Çıkış." Click="MenuItem_Click" />
             </ContextMenu>
         </tb:TaskbarIcon.ContextMenu>
         <tb:TaskbarIcon.TrayPopup>
             <GroupBox>
                 <GroupBox.Header>
-                    <Button Width="24" x:Name="BtnCap" Click="BtnCap_Click" ToolTip="Yalnızca Türkçe Ocr Mevcuttur.">
+                    <Button x:Name="BtnCap"
+                        Width="24"
+                        Click="BtnCap_Click" ToolTip="Yalnızca Türkçe Ocr Mevcuttur.">
                         <Button.Content>
                             <Image Height="16" Source="Picture.png" />
                         </Button.Content>
@@ -102,7 +106,8 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
                                         <Border Grid.Row="0"
-                                            BorderBrush="Black" BorderThickness="1" CornerRadius="2,2,0,0">
+                                            BorderBrush="Black" BorderThickness="1"
+                                            CornerRadius="2,2,0,0">
                                             <Border.Background>
                                                 <LinearGradientBrush ice:Freeze="True" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
                                                     <GradientStop ice:Freeze="True" Offset="1" Color="#FE00B6E8" />
@@ -112,7 +117,8 @@
                                             <ContentPresenter Margin="4" ContentSource="Header" RecognizesAccessKey="True" />
                                         </Border>
                                         <Border Grid.Row="1"
-                                            BorderBrush="Black" BorderThickness="1,0,1,1" CornerRadius="0,0,2,2">
+                                            BorderBrush="Black" BorderThickness="1,0,1,1"
+                                            CornerRadius="0,0,2,2">
                                             <Border.Background>
                                                 <LinearGradientBrush ice:Freeze="True" StartPoint="0.5,0" EndPoint="0.5,1">
                                                     <GradientStop ice:Freeze="True" Offset="0" Color="#FFFDFEFF" />
@@ -138,11 +144,11 @@
                         <ColumnDefinition Width="150" />
                         <ColumnDefinition Width="150" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0"
-                        Text="SEÇİLİ DİLDEN"
+                    <TextBlock Text="SEÇİLİ DİLDEN"
+                        Grid.Row="0" Grid.Column="0"
                         HorizontalAlignment="Center" />
-                    <TextBlock Grid.Row="0" Grid.Column="1"
-                        Text="SEÇİLİ DİLE"
+                    <TextBlock Text="SEÇİLİ DİLE"
+                        Grid.Row="0" Grid.Column="1"
                         HorizontalAlignment="Center" />
                     <ComboBox Grid.Row="1" Grid.Column="0"
                         DisplayMemberPath="Key"
@@ -166,13 +172,13 @@
                             </ItemsPanelTemplate>
                         </ComboBox.ItemsPanel>
                     </ComboBox>
-                    <TextBox Grid.Row="2" Grid.ColumnSpan="2"
-                        Text="{Binding Metin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding Metin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Grid.Row="2" Grid.ColumnSpan="2"
                         VerticalContentAlignment="Top"
                         AcceptsReturn="True" CharacterCasing="Normal" ScrollViewer.VerticalScrollBarVisibility="Auto"
                         TextWrapping="Wrap" />
-                    <TextBox Grid.Row="3" Grid.ColumnSpan="2"
-                        Text="{Binding Çeviri}"
+                    <TextBox Text="{Binding Çeviri}"
+                        Grid.Row="3" Grid.ColumnSpan="2"
                         VerticalContentAlignment="Top"
                         AcceptsReturn="True" CharacterCasing="Normal" IsReadOnly="True"
                         ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" />
