@@ -151,8 +151,10 @@ namespace GPTranslator
                 (sender as Button).DataContext = captureWindow;
                 captureWindow.ShowDialog();
                 var ms = captureWindow.EkranMetni;
+if (ms!=null)
+{
                 Task.Factory.StartNew(() => Metin = ms.OcrYap(), CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
-
+}
             }
         }
 
